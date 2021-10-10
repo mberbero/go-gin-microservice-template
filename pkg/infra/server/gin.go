@@ -7,8 +7,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/mberbero/go-microservice-template/app/routes"
+	_ "github.com/mberbero/go-microservice-template/docs"
 	"github.com/mberbero/go-microservice-template/pkg/domains/post"
 	"github.com/mberbero/go-microservice-template/pkg/infra/database"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
 )
 
 func Run(host, port string) {
@@ -36,5 +39,8 @@ func Run(host, port string) {
 	postService := post.NewService(postRepo)
 
 	routes.PostRoutes(&r.RouterGroup, postService)
+
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	r.Run(net.JoinHostPort(host, port))
 }

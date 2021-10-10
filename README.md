@@ -5,9 +5,16 @@
 - gin
 - mongo
 
+# Usage
 
-## Usage
+## Create a swagger files
 
 ```
-go build -o servicename app/cmd/main.go && ./servicename
+make swag
+```
+
+## Run the microservice
+
+```
+make run
 ```

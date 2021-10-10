@@ -1,0 +1,139 @@
+basePath: /
+definitions:
+  dtos.PostDTO:
+    properties:
+      content:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+    type: object
+  entities.Post:
+    properties:
+      _id:
+        type: string
+      content:
+        type: string
+      created_at:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Microservice Template API documentation
+  title: Microservice Template API
+  version: "0.1"
+paths:
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: Post List
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: Post List
+      tags:
+      - posts
+    post:
+      consumes:
+      - application/json
+      description: Create Post
+      parameters:
+      - description: Post Data
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.PostDTO'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entities.Post'
+      summary: Create Post
+      tags:
+      - posts
+  /posts/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Post Delete
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deleted
+      summary: Post Delete
+      tags:
+      - posts
+    get:
+      consumes:
+      - application/json
+      description: Post Get By ID
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: Post Get By ID
+      tags:
+      - posts
+    put:
+      consumes:
+      - application/json
+      description: Post Update
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Post Data
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/dtos.PostDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.Post'
+      summary: Post Update
+      tags:
+      - posts
+swagger: "2.0"

@@ -26,6 +26,11 @@ func init() {
 	database.Connect(dbname)
 }
 
+// @title Microservice Template API
+// @version 0.1
+// @description Microservice Template API documentation
+// @host localhost:8080
+// @BasePath /
 func main() {
 	server.Run(host, port)
 }
